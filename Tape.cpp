@@ -2,24 +2,42 @@
 #include "Tape.hpp"
 
 int Tape::readElem() {
-    fscanf(Tape::date, "%d", &(Tape::curElem));
-    return Tape::curElem;
+    long pos = ftell(Tape::data_);
+    
+    fscanf(Tape::data_, "%d", &(Tape::curElem_));
+    
+    fseek(Tape::data_, pos, SEEK_SET);
+    
+    return Tape::curElem_;
 }
 
-int Tape::shift(bool isRight) {
+int Tape::shiftRight() {
     int sym = 0;
-    while((sym = fgetc(Tape::date)) != ' ') {
+    while((sym = fgetc(Tape::data_)) != ' ') {
         if (sym == EOF) {
-            fseek(Tape::date, 0, 0);
-            Tape::curIndex = 0;
-            return Tape::curIndex;
+            fseek(Tape::data_, 0, SEEK_SET);
+            Tape::curIndex_ = 0;
+            return Tape::curIndex_;
         }
     }
-    Tape::curIndex++;
+    Tape::curIndex_++;
 
-    return Tape::curIndex;
+    return Tape::curIndex_;
+}
+
+int Tape::rewindLeft() {
+    fseek(Tape::data_, 0, SEEK_SET);
+    Tape::curIndex_ = 0;
+    return Tape::curIndex_;
 }
 
 void Tape::writeElem(int value) {
-    fprintf(Tape::date, "%d ", value);
+    long pos = ftell(Tape::data_);
+
+    if (Tape::curIndex_ + 1 == Tape::size_)
+        fprintf(Tape::data_, "%d", value);
+    else
+        fprintf(Tape::data_, "%d ", value);
+
+    fseek(Tape::data_, pos, SEEK_SET);
 }
