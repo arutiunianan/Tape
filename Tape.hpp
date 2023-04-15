@@ -11,6 +11,13 @@ class Tape: public ITape {
         int curIndex_;
         FILE* data_;
         int size_;
+        /*
+        delayInfo_[0] - delay read
+        delayInfo_[1] - delay write
+        delayInfo_[2] - delay shift
+        delayInfo_[3] - delay rewind
+        */
+        static int* delayInfo_;
     public:
         Tape(char* fileName):
             curElem_(0),
@@ -22,6 +29,7 @@ class Tape: public ITape {
                 while (shiftRight()) {
                     size_++;
                 }
+
                 if (fgetc(data_) != EOF)
                     size_++;
                 fseek(data_, 0, SEEK_SET);
@@ -69,6 +77,17 @@ class Tape: public ITape {
         void clearFile(char* fileName) {
             FILE* file = fopen(fileName, "w");
             fclose(file);
+        }
+
+        static int* readConfig() {
+            delayInfo_ = new int[4];
+            FILE* delayInfo = fopen("config.txt", "r+");
+            for (int i = 0; i<4; i++) {
+                fscanf(delayInfo, "%d", &delayInfo_[i]);
+            }
+            fclose(delayInfo);
+
+            return delayInfo_;
         }
 };
 

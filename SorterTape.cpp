@@ -24,7 +24,7 @@ void SorterTape::sorted() {
             SorterTape::inputTape_->shiftRight();
         }
         SorterTape::outputTape_->writeElem(minElem);
-        SorterTape::outputTape_->shiftRight();
+        SorterTape::outputTape_->shiftRight(); 
         nSortedElems++;
         for (int i = 0; i < minId; i++) {
             tmp->shiftRight();

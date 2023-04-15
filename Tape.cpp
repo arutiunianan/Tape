@@ -1,6 +1,8 @@
 #include <cstdio>
 #include "Tape.hpp"
 
+int* Tape::delayInfo_ = Tape::readConfig();
+
 int Tape::readElem() {
     long pos = ftell(Tape::data_);
     
