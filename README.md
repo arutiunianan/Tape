@@ -15,7 +15,11 @@ g++, python 3.8
 
 ## Сортировка
 
-git clone https://github.com/arutiunianan/Tape  cd Tape/  make  ./a.out inputDate.txt outputDate.txt
+git clone
+  https://github.com/arutiunianan/Tape
+  cd Tape/  
+  make  
+  ./a.out inputDate.txt outputDate.txt
 
 ## Unit-тесты
 
