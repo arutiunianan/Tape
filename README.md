@@ -16,7 +16,6 @@ g++, python 3.8
 ## Сортировка
 
   git clone
-  
   https://github.com/arutiunianan/Tape
   
   cd Tape/  
