@@ -17,7 +17,6 @@ g++, python 3.8
 
   git clone
   https://github.com/arutiunianan/Tape
-  
   cd Tape/  
   make  
   ./a.out inputDate.txt outputDate.txt
